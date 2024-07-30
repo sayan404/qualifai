@@ -154,7 +154,7 @@ export function Compiler() {
             style={{
               width: '100% !important',
               height: '100% !important',
-              objectFit: 'cover !important',
+              objectFit: 'cover',
             }}
             playsInline
           />

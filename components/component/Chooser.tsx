@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from "react"
@@ -105,14 +106,14 @@ export function Chooser() {
           </CarouselNext>
         </Carousel>
         <div className="flex justify-center mt-8">
-          <Button onClick={handleButtonClick}>Let's Start the Interview</Button>
+          <Button onClick={handleButtonClick}>Now Start the Interview</Button>
         </div>
       </div>
     </div>
   )
 }
 
-function ChevronLeftIcon(props) {
+function ChevronLeftIcon(props : any) {
   return (
     <svg
       {...props}
@@ -131,7 +132,7 @@ function ChevronLeftIcon(props) {
   )
 }
 
-function ChevronRightIcon(props) {
+function ChevronRightIcon(props : any) {
   return (
     <svg
       {...props}
