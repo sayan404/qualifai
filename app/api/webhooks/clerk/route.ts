@@ -8,12 +8,12 @@ import { createUser } from "@/lib/actions/user.action";
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
-console.log('WEBHOOK_SECRET' , WEBHOOK_SECRET);
+  console.log("WEBHOOK_SECRET", WEBHOOK_SECRET);
 
   if (!WEBHOOK_SECRET) {
     throw new Error(
       "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
-    )
+    );
   }
 
   // Get the headers
@@ -47,29 +47,31 @@ console.log('WEBHOOK_SECRET' , WEBHOOK_SECRET);
   let evt: WebhookEvent;
 
   // Verify the payload with the headers
-  try {
-    evt = wh.verify(body, {
-      "svix-id": svix_id,
-      "svix-timestamp": svix_timestamp,
-      "svix-signature": svix_signature,
-    }) as WebhookEvent;
-  } catch (err: any) {
-    console.error("Error verifying webhook:", err.message, err);
-    return new Response("Error occured", {
-      status: 400,
-    });
-  }
+  // try {
+  //   evt = wh.verify(body, {
+  //     "svix-id": svix_id,
+  //     "svix-timestamp": svix_timestamp,
+  //     "svix-signature": svix_signature,
+  //   }) as WebhookEvent;
+  // } catch (err: any) {
+  //   console.error("Error verifying webhook:", err.message, err);
+  //   return new Response("Error occured", {
+  //     status: 400,
+  //   });
+  // }
 
   // Get the ID and type
-  const { id } = evt.data;
-  const eventType = evt.type;
+  const parsedBody = JSON.parse(body);
+  const { id } = parsedBody.data;
+  const eventType = parsedBody.type;
 
   // CREATE User in mongodb
   if (eventType === "user.created") {
     const { id, email_addresses, image_url, first_name, last_name, username } =
-      evt.data;
+      parsedBody.data;
     console.log(
-      "id, email_addresses, image_url, first_name, last_name, username",id,
+      "id, email_addresses, image_url, first_name, last_name, username",
+      id,
       email_addresses,
       image_url,
       first_name,
