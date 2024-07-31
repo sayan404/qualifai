@@ -25,7 +25,7 @@ const Navbar = async () => {
             </>
           ) : (
             <>
-              <Link href="/profile" className="text-white">
+              <Link href="/dashboard" className="text-white">
                 Profile
               </Link>
               <UserButton afterSignOutUrl="/" />
