@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getVerbalQuestion , createVerbalQuestion } from "@/lib/actions/rolebasedQuesions.action";
+import { getVerbalQuestion , createVerbalQuestion } from "@/lib/actions/verbalQuestions.action";
 // POST request handler to create a new verbal-based question
 export async function POST(req: Request) {
   try {

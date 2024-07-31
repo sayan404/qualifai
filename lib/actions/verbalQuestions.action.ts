@@ -3,7 +3,7 @@ import { VerbalQuestion } from "../modals/verbalQuestions.modal";
 import { connect } from "../db";
 
 // Function to create a new verbal-based question
-export async function createRoleBasedQuestion(questionData: any) {
+export async function createVerbalQuestion(questionData: any) {
   try {
     console.log("questionData coming in params", questionData);
     await connect();
@@ -20,7 +20,7 @@ export async function createRoleBasedQuestion(questionData: any) {
 }
 
 // Function to get role-based questions with filtering
-export async function getRoleBasedQuestion(query: any) {
+export async function getVerbalQuestion(query: any) {
   try {
     await connect();
     console.log("db connected");
