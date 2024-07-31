@@ -29,7 +29,7 @@ const questionSchema = new Schema({
   },
   dataStructureType: {
     type: String,
-    enum: [
+    enum: [ //TODO: remove this latter 
       "array",
       "linked list",
       "stack",
@@ -39,7 +39,9 @@ const questionSchema = new Schema({
       "hash table",
       "heap",
       "other",
-    ]
+      "string",
+      "number",
+    ],
   },
 });
 
@@ -61,4 +63,5 @@ const companyBasedSchema = new Schema({
 const CompanyBasedQuestion =
   models?.CompanyBasedQuestion ||
   model("CompanyBasedQuestion", companyBasedSchema);
-module.exports = CompanyBasedQuestion;
+
+export default CompanyBasedQuestion;

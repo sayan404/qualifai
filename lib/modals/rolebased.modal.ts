@@ -29,20 +29,11 @@ const questionSchema = new Schema({
   },
   dataStructureType: {
     type: String,
-    enum: [
-      "array",
-      "linked list",
-      "stack",
-      "queue",
-      "tree",
-      "graph",
-      "hash table",
-      "heap",
-      "other",
-    ],
+    required: true,
   },
 });
 
+// Basic Tech Stack Related Question Schema
 const roleBasedSchema = new Schema({
   question: { type: questionSchema, required: true },
   role: { type: String, required: true },
@@ -55,6 +46,7 @@ const roleBasedSchema = new Schema({
 });
 
 const RoleBasedQuestion =
-  models?.RoleBasedQuestion || model("RoleBasedQuestion", roleBasedSchema);
+  models?.RoleBasedQuestion ||
+  model("RoleBasedQuestion", roleBasedSchema);
 
-module.exports = RoleBasedQuestion;
+export default RoleBasedQuestion ;

@@ -37,9 +37,11 @@ const dsaRoundSchema = new Schema({
   },
   dataStructureType: {
     type: String,
-    enum: ['array', 'linked list', 'stack', 'queue', 'tree', 'graph', 'hash table', 'heap', 'other'],
     required: true
   }
 });
 
-module.exports = models?.DSARound || model('DSARound', dsaRoundSchema);
+const DSARound = models?.DSARound || model('DSARound', dsaRoundSchema);
+
+
+export default DSARound;
