@@ -46,12 +46,12 @@ export function Dashboard() {
   console.log("companies", companies);
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-background">
+    <div className="flex flex-col w-full bg-background">
       {showInterview ? (
         <Chooser />
       ) : (
         <>
-          <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6">
+          {/* <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6">
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon" className="md:hidden">
@@ -85,6 +85,19 @@ export function Dashboard() {
                         prefetch={false}
                       >
                         My Space
+                      </Link>
+                      <Link
+                        href="#"
+                        data-section="Company-based"
+                        className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                          activeSection === "Company-based"
+                            ? "bg-muted text-primary"
+                            : "text-muted-foreground"
+                        } transition-all hover:text-primary`}
+                        onClick={() => handleNavClick("Company-based")}
+                        prefetch={false}
+                      >
+                        Company-based
                       </Link>
                       <Link
                         href="#"
@@ -150,19 +163,6 @@ export function Dashboard() {
                         prefetch={false}
                       >
                         DSA Rounds
-                      </Link>
-                      <Link
-                        href="#"
-                        data-section="Company-based"
-                        className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                          activeSection === "Company-based"
-                            ? "bg-muted text-primary"
-                            : "text-muted-foreground"
-                        } transition-all hover:text-primary`}
-                        onClick={() => handleNavClick("Company-based")}
-                        prefetch={false}
-                      >
-                        Company-based
                       </Link>
                     </nav>
                   </div>
@@ -318,8 +318,8 @@ export function Dashboard() {
                 <span className="sr-only">Toggle user menu</span>
               </Button>
             </div>
-          </header>
-          <div className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 overflow-auto">
+          </header> */}
+          <div className="flex overflow-hidden">
             <div className="hidden md:flex flex-col gap-2 text-foreground bg-background w-[260px] shrink-0">
               <div className="sticky top-0 p-2">
                 <Link
@@ -345,6 +345,19 @@ export function Dashboard() {
                     prefetch={false}
                   >
                     My Space
+                  </Link>
+                  <Link
+                    href="#"
+                    data-section="Company-based"
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                      activeSection === "Company-based"
+                        ? "bg-muted text-primary"
+                        : "text-muted-foreground"
+                    } transition-all hover:text-primary`}
+                    onClick={() => handleNavClick("Company-based")}
+                    prefetch={false}
+                  >
+                    Company-based
                   </Link>
                   <Link
                     href="#"
@@ -411,27 +424,23 @@ export function Dashboard() {
                   >
                     DSA Rounds
                   </Link>
-                  <Link
-                    href="#"
-                    data-section="Company-based"
-                    className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                      activeSection === "Company-based"
-                        ? "bg-muted text-primary"
-                        : "text-muted-foreground"
-                    } transition-all hover:text-primary`}
-                    onClick={() => handleNavClick("Company-based")}
-                    prefetch={false}
-                  >
-                    Company-based
-                  </Link>
                 </nav>
               </div>
             </div>
-            <main className="flex-1 flex flex-col gap-4 p-4 md:gap-8 md:p-10 overflow-auto">
+            <main className=" flex justify-center items-center gap-4 p-4 md:gap-8 md:p-10 w-full h-full overflow-auto font-bold">
+              {activeSection === "Company-based" && (
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {companies &&
+                    companies.map((e, idx) => (
+                      <CompanyBasedinterview key={idx} companyData={e} />
+                    ))}
+                </div>
+              )}
               {activeSection === "My Space" && (
                 <>
-                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    <Card className="h-full">
+                  <div className="grid gap-4 md:grid-cols-2 h-[50vh] lg:grid-cols-3 text-center">
+                    Comming Soon
+                    {/* <Card className="h-full">
                       <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium">
                           Past Interview Scores
@@ -612,13 +621,14 @@ export function Dashboard() {
                           </TableRow>
                         </TableBody>
                       </Table>
-                    </Card>
+                    </Card> */}
                   </div>
                 </>
               )}
               {activeSection === "Topic-based" && (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  <Card className="h-full">
+                  Comming Soon
+                  {/* <Card className="h-full">
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                       <CardTitle className="text-sm font-medium">
                         Algorithms
@@ -733,12 +743,13 @@ export function Dashboard() {
                         Interviews completed
                       </p>
                     </CardContent>
-                  </Card>
+                  </Card> */}
                 </div>
               )}
               {activeSection === "Role-based" && (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  <Card className="h-full">
+                  Comming soon
+                  {/* <Card className="h-full">
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                       <CardTitle className="text-sm font-medium">
                         Frontend Developer
@@ -869,12 +880,13 @@ export function Dashboard() {
                         Interviews completed
                       </p>
                     </CardContent>
-                  </Card>
+                  </Card> */}
                 </div>
               )}
               {activeSection === "Tech Stack" && (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  <Card className="h-full">
+                  Comming soon
+                  {/* <Card className="h-full">
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                       <CardTitle className="text-sm font-medium">
                         MERN Stack
@@ -989,21 +1001,16 @@ export function Dashboard() {
                         Interviews completed
                       </p>
                     </CardContent>
-                  </Card>
+                  </Card> */}
                 </div>
               )}
 
               {/* add company based interview */}
-              {activeSection === "Company-based" && (
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {companies && companies.map((e, idx) => (
-                    <CompanyBasedinterview key={idx} companyData={e} />
-                  ))}
-                </div>
-              )}
+
               {activeSection === "DSA Rounds" && (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  <Card className="h-full">
+                  Comming soon
+                  {/* <Card className="h-full">
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                       <CardTitle className="text-sm font-medium">
                         DSA(0-100)
@@ -1070,12 +1077,12 @@ export function Dashboard() {
                         Interviews completed
                       </p>
                     </CardContent>
-                  </Card>
+                  </Card> */}
                 </div>
               )}
               {activeSection === "Past Interviews" && (
                 <Card className="h-full">
-                  <Table>
+                  {/* <Table>
                     <TableHeader>
                       <TableRow>
                         <TableHead>Interview</TableHead>
@@ -1139,7 +1146,7 @@ export function Dashboard() {
                         <TableCell className="font-medium">INV007</TableCell>
                         <TableCell>Algorithms</TableCell>
                         <TableCell>Frontend Engineer</TableCell>
-                        <TableCell></TableCell> {/* No tech stack */}
+                        <TableCell></TableCell> 
                         <TableCell>82</TableCell>
                         <TableCell>Apple</TableCell>
                       </TableRow>
@@ -1179,7 +1186,7 @@ export function Dashboard() {
                         <TableCell className="font-medium">INV012</TableCell>
                         <TableCell>Algorithms</TableCell>
                         <TableCell>Frontend Engineer</TableCell>
-                        <TableCell></TableCell> {/* No tech stack */}
+                        <TableCell></TableCell> 
                         <TableCell>77</TableCell>
                         <TableCell>Google</TableCell>
                       </TableRow>
@@ -1248,7 +1255,7 @@ export function Dashboard() {
                         <TableCell>Microsoft</TableCell>
                       </TableRow>
                     </TableBody>
-                  </Table>
+                  </Table> */}
                 </Card>
               )}
             </main>

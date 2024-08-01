@@ -2,38 +2,61 @@ import React from "react";
 import Link from "next/link";
 import { UserButton, useAuth } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
+import { Button } from "../ui/button";
 
 const Navbar = async () => {
   const { userId } = auth();
   const isAuth = !!userId;
 
   return (
-    <nav className="bg-red-600 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="text-white text-lg font-bold">
-          Home
+    <header className="p-6 flex justify-between items-center">
+      <h1 className="text-3xl font-bold font-serif">Qualifai</h1>
+      <nav className="flex flex-row justify-center items-center gap-4">
+        <Link href="/">
+          {" "}
+          <Button
+            variant="ghost"
+            className="mr-4 text-white hover:text-gray-300"
+          >
+            Home
+          </Button>{" "}
         </Link>
-        <div className="flex gap-4 items-center">
-          {!isAuth ? (
-            <>
-              <Link href="/sign-in" className="text-white">
-                Login
-              </Link>
-              <Link href="/sign-up" className="text-white">
+        {!isAuth ? (
+          <>
+            {" "}
+            <Link href="/sign-up">
+              {" "}
+              <Button
+                variant="outline"
+                className="text-white border-white hover:bg-white hover:text-black"
+              >
                 Sign Up
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link href="/dashboard" className="text-white">
+              </Button>
+            </Link>
+            <Link href="/sign-in" className="text-white">
+              <Button
+                variant="outline"
+                className="text-white border-white hover:bg-white hover:text-black"
+              >
+                Sign In
+              </Button>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link href="/dashboard" className="text-white">
+              <Button
+                variant="outline"
+                className="text-white border-white hover:bg-white hover:text-black"
+              >
                 Profile
-              </Link>
-              <UserButton afterSignOutUrl="/" />
-            </>
-          )}
-        </div>
-      </div>
-    </nav>
+              </Button>
+            </Link>
+            <UserButton afterSignOutUrl="/" />
+          </>
+        )}
+      </nav>
+    </header>
   );
 };
 

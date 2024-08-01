@@ -10,18 +10,18 @@ const CompanyBasedinterview = (companyData: any) => {
     }
   return (
     <Card className="h-full">
-      <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <CardTitle className="text-sm font-medium">
+      <CardHeader className="flex flex-row items-center justify-between pb-4 GAP4">
+        <CardTitle className="text-sm font-xl">
           {companyData.companyData.name}
         </CardTitle>
         <Button variant="outline" size="sm" onClick={handleInterviewStart}>
           Start Interview
         </Button>
       </CardHeader>
-      <CardContent>
+      {/* <CardContent>
         <div className="text-2xl font-bold">8</div>
         <p className="text-xs text-muted-foreground">Interviews completed</p>
-      </CardContent>
+      </CardContent> */}
     </Card>
   );
 };
