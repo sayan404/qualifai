@@ -7,6 +7,8 @@ export async function POST(req: NextRequest) {
   const formData = await req.formData();
   const audioFile = formData.get("audio") as Blob;
   const audioUrl = URL.createObjectURL(audioFile);
+  console.log("audioUrl", audioUrl);
+
   try {
     const result = await deepgram.listen.prerecorded.transcribeUrl(
       {
