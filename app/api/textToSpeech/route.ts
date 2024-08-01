@@ -1,14 +1,22 @@
-// /app/api/textToSpeech/route.js
-import { createClient } from "@deepgram/sdk";
+import { Deepgram } from "@deepgram/sdk";
 import { NextRequest, NextResponse } from "next/server";
-import { pipeline } from "stream/promises";
-
+import { createClient } from "@deepgram/sdk";
 export async function POST(req: NextRequest) {
   const { question } = await req.json();
-  const text = question
+  const text = question;
   console.log("text", text);
 
   const deepgramApiKey = process.env.NEXT_PUBLIC_DEEPGRAM_API_KEY;
+  console.log("deepgramApiKey", deepgramApiKey);
+
+  // Check if the API key is present
+  if (!deepgramApiKey) {
+    return NextResponse.json(
+      { error: "Deepgram API key is missing" },
+      { status: 500 }
+    );
+  }
+
   const deepgram = createClient(deepgramApiKey);
 
   try {
@@ -30,10 +38,10 @@ export async function POST(req: NextRequest) {
         { status: 500 }
       );
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Internal server error", details: error.message },
       { status: 500 }
     );
   }
