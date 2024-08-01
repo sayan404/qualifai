@@ -439,8 +439,8 @@ export function Dashboard() {
               {activeSection === "My Space" && (
                 <>
                   <div className="grid gap-4 md:grid-cols-2 h-[50vh] lg:grid-cols-3 text-center">
-                    Comming Soon
-                    {/* <Card className="h-full">
+                    
+                    <Card className="h-full">
                       <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium">
                           Past Interview Scores
@@ -457,7 +457,7 @@ export function Dashboard() {
                       </CardContent>
                       <CardFooter>
                         <Button variant="link" size="sm">
-                          View Details
+                          Comming soon
                         </Button>
                       </CardFooter>
                     </Card>
@@ -476,7 +476,7 @@ export function Dashboard() {
                       </CardContent>
                       <CardFooter>
                         <Button variant="link" size="sm">
-                          View Details
+                          Comming soon
                         </Button>
                       </CardFooter>
                     </Card>
@@ -495,7 +495,7 @@ export function Dashboard() {
                       </CardContent>
                       <CardFooter>
                         <Button variant="link" size="sm">
-                          View Details
+                          Comming soon
                         </Button>
                       </CardFooter>
                     </Card>
@@ -514,7 +514,7 @@ export function Dashboard() {
                       </CardContent>
                       <CardFooter>
                         <Button variant="link" size="sm">
-                          View Details
+                          Comming soon
                         </Button>
                       </CardFooter>
                     </Card>
@@ -531,7 +531,7 @@ export function Dashboard() {
                       </CardContent>
                       <CardFooter>
                         <Button variant="link" size="sm">
-                          View Details
+                          Comming soon
                         </Button>
                       </CardFooter>
                     </Card>
@@ -550,13 +550,13 @@ export function Dashboard() {
                       </CardContent>
                       <CardFooter>
                         <Button variant="link" size="sm">
-                          View Details
+                          Comming soon
                         </Button>
                       </CardFooter>
                     </Card>
                   </div>
                   <div>
-                    <Card className="h-full">
+                    {/* <Card className="h-full">
                       <Table>
                         <TableHeader>
                           <TableRow>
@@ -621,20 +621,19 @@ export function Dashboard() {
                           </TableRow>
                         </TableBody>
                       </Table>
-                    </Card> */}
+                    </Card>  */}
                   </div>
                 </>
               )}
               {activeSection === "Topic-based" && (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  Comming Soon
-                  {/* <Card className="h-full">
+                  <Card className="h-full">
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                       <CardTitle className="text-sm font-medium">
                         Algorithms
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -648,7 +647,7 @@ export function Dashboard() {
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                       <CardTitle className="text-sm font-medium">DSA</CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
 
@@ -665,7 +664,7 @@ export function Dashboard() {
                         System Design
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -681,7 +680,7 @@ export function Dashboard() {
                         Computer Networks
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -698,7 +697,7 @@ export function Dashboard() {
                         DBMS
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -718,7 +717,7 @@ export function Dashboard() {
                         size="sm"
                         onClick={() => setShowInterview(true)}
                       >
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -734,7 +733,7 @@ export function Dashboard() {
                         System Design (Complete){" "}
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -743,19 +742,19 @@ export function Dashboard() {
                         Interviews completed
                       </p>
                     </CardContent>
-                  </Card> */}
+                  </Card> 
                 </div>
               )}
               {activeSection === "Role-based" && (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   Comming soon
-                  {/* <Card className="h-full">
+                  <Card className="h-full">
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                       <CardTitle className="text-sm font-medium">
                         Frontend Developer
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -771,7 +770,7 @@ export function Dashboard() {
                         Backend Developer
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -791,7 +790,7 @@ export function Dashboard() {
                         size="sm"
                         onClick={() => setShowInterview(true)}
                       >
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -807,7 +806,7 @@ export function Dashboard() {
                         BlockChain Engineer
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -823,7 +822,7 @@ export function Dashboard() {
                         ML Engineer
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -839,7 +838,7 @@ export function Dashboard() {
                         SDE-Intern
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -855,7 +854,7 @@ export function Dashboard() {
                         Cyber Security Engineer
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -871,7 +870,7 @@ export function Dashboard() {
                         AI Engineer
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -880,19 +879,18 @@ export function Dashboard() {
                         Interviews completed
                       </p>
                     </CardContent>
-                  </Card> */}
+                  </Card>
                 </div>
               )}
               {activeSection === "Tech Stack" && (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  Comming soon
-                  {/* <Card className="h-full">
+                  <Card className="h-full">
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                       <CardTitle className="text-sm font-medium">
                         MERN Stack
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -908,7 +906,7 @@ export function Dashboard() {
                         DevOps
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -924,7 +922,7 @@ export function Dashboard() {
                         Node+Sql+Nosql+Express
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -944,7 +942,7 @@ export function Dashboard() {
                         size="sm"
                         onClick={() => setShowInterview(true)}
                       >
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -960,7 +958,7 @@ export function Dashboard() {
                         Sql Databases
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -976,7 +974,7 @@ export function Dashboard() {
                         Rust
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -992,7 +990,7 @@ export function Dashboard() {
                         Solidity
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -1001,7 +999,7 @@ export function Dashboard() {
                         Interviews completed
                       </p>
                     </CardContent>
-                  </Card> */}
+                  </Card> 
                 </div>
               )}
 
@@ -1009,14 +1007,13 @@ export function Dashboard() {
 
               {activeSection === "DSA Rounds" && (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  Comming soon
-                  {/* <Card className="h-full">
+                   <Card className="h-full">
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                       <CardTitle className="text-sm font-medium">
                         DSA(0-100)
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -1032,7 +1029,7 @@ export function Dashboard() {
                         Arrays + LinkedList + Strings{" "}
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -1052,7 +1049,7 @@ export function Dashboard() {
                         size="sm"
                         onClick={() => setShowInterview(true)}
                       >
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -1068,7 +1065,7 @@ export function Dashboard() {
                         Tries
                       </CardTitle>
                       <Button variant="outline" size="sm">
-                        Start Interview
+                        Comming soon
                       </Button>
                     </CardHeader>
                     <CardContent>
@@ -1077,12 +1074,13 @@ export function Dashboard() {
                         Interviews completed
                       </p>
                     </CardContent>
-                  </Card> */}
+                  </Card> 
                 </div>
               )}
               {activeSection === "Past Interviews" && (
+                <>  No Data available for now
                 <Card className="h-full">
-                  {/* <Table>
+                   {/* <Table>
                     <TableHeader>
                       <TableRow>
                         <TableHead>Interview</TableHead>
@@ -1256,7 +1254,7 @@ export function Dashboard() {
                       </TableRow>
                     </TableBody>
                   </Table> */}
-                </Card>
+                </Card></>
               )}
             </main>
           </div>

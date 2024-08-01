@@ -19,7 +19,7 @@ const Question: React.FC<QuestionProps> = ({
   question,
   onNextQuestion,
   isLastQuestion,
-  companyName
+  companyName,
 }) => {
   const { user } = useUser();
   const router = useRouter(); // Initialize router for redirection
@@ -88,6 +88,7 @@ const Question: React.FC<QuestionProps> = ({
         answer: result?.resultData,
       };
       const storedSessionId = localStorage.getItem("sessionId");
+      console.log("user?.id ----->", user?.id, user);
 
       if (storedSessionId) {
         sessionId = storedSessionId;
@@ -95,13 +96,13 @@ const Question: React.FC<QuestionProps> = ({
       try {
         const response = await axios.post("/api/qna", {
           sessionId: sessionId || 0,
-          userId: user?.id.toString(),
+          userId: user?.id,
           question: questionData,
         });
         const newSessionId = response.data.data.sessionId;
         localStorage.setItem("sessionId", newSessionId);
         if (isLastQuestion) {
-         setTimeout(() => {
+          setTimeout(() => {
             router.push(`/coding-questions?company=${companyName}`);
           }, 1000); // Delay for 3 seconds before redirecting
         }
@@ -121,9 +122,12 @@ const Question: React.FC<QuestionProps> = ({
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
+        gap: "5vh",
       }}
     >
-      <p>{question.question}</p>
+      <p style={{ fontSize: "2rem", textAlign: "center" }}>
+        {question.question}
+      </p>
       <button
         onClick={handleMicButtonClick}
         style={{

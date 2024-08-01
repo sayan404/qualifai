@@ -80,7 +80,7 @@ export default function Home() {
               ))}
             </ul>
           </div>
-          <span>Loading</span>
+          <span>Loading...</span>
         </div>
       </div>
     );

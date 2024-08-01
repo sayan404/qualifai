@@ -27,7 +27,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         >
           {" "}
           <ClerkLoading>
-            <div className="flex flex-col items-center text-center mt-32">
+            <div className="flex flex-col items-center justify-center text-center mt-[20%]">
               LOADING...
             </div>
           </ClerkLoading>

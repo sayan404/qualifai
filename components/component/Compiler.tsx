@@ -26,17 +26,58 @@ const languageOptions = [
 ];
 
 const boilerplate: { [key: string]: string } = {
-  c: `// write your code here \n`,
-  cpp: `// write your code here \n`,
-  csharp: `// write your code here \n`,
-  java: `// write your code here \n`,
-  javascript: `// write your code here \n`,
-  php: `// write your code here \n`,
-  python: `// write your code here \n`,
-  ruby: `// write your code here \n`,
-  go: `// write your code here \n`,
-  rust: `// write your code here \n`,
-  swift: `// write your code here \n`,
+  c: `#include <stdio.h>
+
+int main() {
+  // write your code here
+  printf("Hello, World!\\n");
+  return 0;
+}`,
+  cpp: `#include <iostream>
+
+int main() {
+  // write your code here
+  std::cout << "Hello, World!" << std::endl;
+  return 0;
+}`,
+  csharp: `using System;
+
+class Program {
+  static void Main() {
+    // write your code here
+    Console.WriteLine("Hello, World!");
+  }
+}`,
+  java: `public class Main {
+  public static void main(String[] args) {
+    // write your code here
+    System.out.println("Hello, World!");
+  }
+}`,
+  javascript: `// write your code here
+console.log("Hello, World!");`,
+  php: `<?php
+// write your code here
+echo "Hello, World!";
+?>`,
+  python: `# write your code here
+print("Hello, World!")`,
+  ruby: `# write your code here
+puts "Hello, World!"`,
+  go: `package main
+
+import "fmt"
+
+func main() {
+  // write your code here
+  fmt.Println("Hello, World!")
+}`,
+  rust: `fn main() {
+  // write your code here
+  println!("Hello, World!");
+}`,
+  swift: `// write your code here
+print("Hello, World!")`,
 };
 
 interface TestCase {
@@ -121,7 +162,7 @@ export function Compiler({
   };
   const handleRunCode = async () => {
     setTestCount(0);
-    setButtonText("Running Test Cases: 0/20");
+    setButtonText("Running on Test Cases");
 
     // Fetch the code output first
     const response = await fetch("/api/run-code", {
@@ -133,15 +174,18 @@ export function Compiler({
     });
 
     const data = await response.json();
-    setOutput(data.output);
-    onStatusChange(data.isExecutionSuccess);
-    if (data.isExecutionSuccess) {
+    console.log("data.isExecutionSuccess" ,data.output);
+    
+    setOutput(data.output.output);
+    onStatusChange(data.output.isExecutionSuccess);
+    if (data.output.isExecutionSuccess) {
       // Start the test cases simulation
       simulateTestCases();
     }
   };
 
   const handleSubmit = () => {
+    setButtonText("Run Code"); 
     onNextQuestion(); // Proceed to the next question or redirect to thank you page
   };
 

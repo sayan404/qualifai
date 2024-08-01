@@ -3,7 +3,6 @@ import { Schema, model, models } from "mongoose";
 const reportSchema = new Schema({
   interviewFor: {
     type: String,
-    default: false,
   },
   score: {
     type: Number,
@@ -11,19 +10,17 @@ const reportSchema = new Schema({
   },
   verbalQuestions: {
     type: Number,
-    default: 0,
+    default: 2,
   },
   codingQuestions: {
     type: Number,
-    default: 0,
+    default: 3,
   },
   detailedFeedback: {
     type: String,
-    default: false,
   },
   voiceSentimentAnalysis: {
     type: String,
-    default: false,
   },
 });
 
@@ -44,7 +41,6 @@ const UserSchema = new Schema({
   },
   photo: {
     type: String,
-    required: true,
   },
   firstName: {
     type: String,
@@ -53,8 +49,7 @@ const UserSchema = new Schema({
     type: String,
   },
   password: {
-    type: String,
-    required: true,
+    type: String
   },
   role: {
     type: String,

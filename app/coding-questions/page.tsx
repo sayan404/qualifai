@@ -17,7 +17,7 @@ const CodingQuestionPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const lastCompanyName = useRef<string | null>(null); // To track the last requested company name
+  const lastCompanyName = useRef<string | null>(null); 
   const [status, setStatus] = useState<boolean>(false);
   useEffect(() => {
     if (!isSignedIn) router.push("/");
@@ -109,13 +109,11 @@ const CodingQuestionPage = () => {
           question: questionData,
         });
         console.log("response data from coding-ques", response);
-
-        const newSessionId = response.data.data.sessionId;
-        localStorage.setItem("sessionId", newSessionId);
+        // localStorage.removeItem("sessionId");
       } catch (err) {
         console.log(err);
       }
-      router.push("/congratulation"); // Redirect to thank you page
+      router.push(`/congratulation?sessionId=${sessionId}`); // Redirect to thank you page
     }
   };
 
