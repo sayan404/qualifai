@@ -17,7 +17,7 @@ export async function GET(req: Request) {
   async function getSelectedVerbalQs() {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/verbalQuestions"
+        "https://qualifai-xi.vercel.app/api/verbalQuestions"
       );
       const questionsData = response.data;
       const questions = questionsData.questions.questions;
@@ -45,7 +45,7 @@ export async function GET(req: Request) {
   async function getfilteredCompanybasedQs(query: any) {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/companyBasedQuestion?company=${query}`
+        `https://qualifai-xi.vercel.app/api/companyBasedQuestion?company=${query}`
       );
       const questionsData = response.data;
       const questions = questionsData.questions.questions;
