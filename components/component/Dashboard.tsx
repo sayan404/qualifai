@@ -997,7 +997,7 @@ export function Dashboard() {
               {activeSection === "Company-based" && (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {companies && companies.map((e, idx) => (
-                    <CompanyBasedinterview companyData={e} />
+                    <CompanyBasedinterview key={idx} companyData={e} />
                   ))}
                 </div>
               )}

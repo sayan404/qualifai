@@ -3,7 +3,7 @@ import Question from "../component/Question";
 import MediaPlayer from "../component/MediaPlayer";
 import "../../app/globals.css";
 
-const Interview = ({ questions }: { questions: any }) => {
+const Interview = ({ questions }: { questions?: any }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(true);
   const [audio, setAudio] = useState("");
