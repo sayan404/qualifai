@@ -1,4 +1,7 @@
+import { useUser } from "@clerk/nextjs";
+import axios from "axios";
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 interface QuestionProps {
   question: {
@@ -8,20 +11,40 @@ interface QuestionProps {
     difficulty: string;
   };
   onNextQuestion: () => void;
+  isLastQuestion?: boolean; // Add this prop
+  companyName: string;
 }
 
-const Question: React.FC<QuestionProps> = ({ question, onNextQuestion }) => {
+const Question: React.FC<QuestionProps> = ({
+  question,
+  onNextQuestion,
+  isLastQuestion,
+  companyName
+}) => {
+  const { user } = useUser();
+  const router = useRouter(); // Initialize router for redirection
+
   const [isMuted, setIsMuted] = useState(true);
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [recordingURL, setRecordingURL] = useState<string | null>(null);
-
+  let alldataSaved = false;
   useEffect(() => {
     if (audioBlob) {
       uploadAudio(audioBlob);
     }
   }, [audioBlob]);
+
+  useEffect(() => {
+    if (isLastQuestion && alldataSaved && audioBlob === null) {
+      // Redirect after the last question is processed
+      const timer = setTimeout(() => {
+        router.push("/coding-questions");
+      }, 3000); // Delay for 3 seconds before redirecting
+
+      return () => clearTimeout(timer); // Cleanup timeout on unmount
+    }
+  }, [isLastQuestion, audioBlob, router, alldataSaved]);
 
   const handleMicButtonClick = async () => {
     if (isMuted) {
@@ -58,10 +81,33 @@ const Question: React.FC<QuestionProps> = ({ question, onNextQuestion }) => {
         method: "POST",
         body: formData,
       });
-
       const result = await response.json();
-      console.log("Transcription Result:", result);
-      // Handle the transcription result if needed
+      let sessionId = "";
+      const questionData = {
+        question: question.question,
+        answer: result?.resultData,
+      };
+      const storedSessionId = localStorage.getItem("sessionId");
+
+      if (storedSessionId) {
+        sessionId = storedSessionId;
+      }
+      try {
+        const response = await axios.post("/api/qna", {
+          sessionId: sessionId || 0,
+          userId: user?.id.toString(),
+          question: questionData,
+        });
+        const newSessionId = response.data.data.sessionId;
+        localStorage.setItem("sessionId", newSessionId);
+        if (isLastQuestion) {
+         setTimeout(() => {
+            router.push(`/coding-questions?company=${companyName}`);
+          }, 1000); // Delay for 3 seconds before redirecting
+        }
+      } catch (err) {
+        console.log(err);
+      }
     } catch (error) {
       console.error("Error uploading audio:", error);
     }

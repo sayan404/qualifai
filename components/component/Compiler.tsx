@@ -1,5 +1,13 @@
+"use client";
 import { useState, useEffect, useRef } from "react";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import Editor from "@monaco-editor/react";
 
@@ -18,56 +26,63 @@ const languageOptions = [
 ];
 
 const boilerplate: { [key: string]: string } = {
-  c: `#include <stdio.h>
-
-int main() {
-  printf("Hello, World!\\n");
-  return 0;
-}`,
-  cpp: `#include <iostream>
-
-int main() {
-  std::cout << "Hello, World!" << std::endl;
-  return 0;
-}`,
-  csharp: `using System;
-
-class Program {
-  static void Main() {
-    Console.WriteLine("Hello, World!");
-  }
-}`,
-  java: `public class Main {
-  public static void main(String[] args) {
-    System.out.println("Hello, World!");
-  }
-}`,
-  javascript: `console.log("Hello, World!");`,
-  php: `<?php
-echo "Hello, World!";
-?>`,
-  python: `print("Hello, World!")`,
-  ruby: `puts "Hello, World!"`,
-  go: `package main
-
-import "fmt"
-
-func main() {
-  fmt.Println("Hello, World!")
-}`,
-  rust: `fn main() {
-  println!("Hello, World!");
-}`,
-  swift: `print("Hello, World!")`,
+  c: `// write your code here \n`,
+  cpp: `// write your code here \n`,
+  csharp: `// write your code here \n`,
+  java: `// write your code here \n`,
+  javascript: `// write your code here \n`,
+  php: `// write your code here \n`,
+  python: `// write your code here \n`,
+  ruby: `// write your code here \n`,
+  go: `// write your code here \n`,
+  rust: `// write your code here \n`,
+  swift: `// write your code here \n`,
 };
 
-export function Compiler() {
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("javascript");
+interface TestCase {
+  query: string;
+  correctAnswer: string;
+}
+
+interface Example {
+  testCase: TestCase;
+  explanation: string;
+}
+
+interface Question {
+  question: string;
+  testCases: TestCase[];
+  example: Example;
+  dataStructureType: string;
+}
+
+interface CompilerProps {
+  question: {
+    _id: string;
+    question: Question;
+    company: string;
+    difficulty: string;
+    __v: number;
+  };
+  onNextQuestion: () => void;
+  onStatusChange: (status: boolean) => void;
+}
+
+export function Compiler({
+  question,
+  onNextQuestion,
+  onStatusChange,
+}: CompilerProps) {
+  console.log("question ------>", question);
+
+  const [selectedLanguage, setSelectedLanguage] =
+    useState<string>("javascript");
   const [code, setCode] = useState<string>(boilerplate["javascript"]);
   const [output, setOutput] = useState<string>("");
   const [showVideo, setShowVideo] = useState<boolean>(true);
   const [testCount, setTestCount] = useState<number>(0);
   const [buttonText, setButtonText] = useState<string>("Run Code");
+  const [status, setStatus] = useState<boolean>(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -78,13 +93,13 @@ export function Compiler() {
     const playVideo = () => {
       if (videoRef.current) {
         videoRef.current.play();
-        document.removeEventListener('click', playVideo);
+        document.removeEventListener("click", playVideo);
       }
     };
-    
-    document.addEventListener('click', playVideo);
+
+    document.addEventListener("click", playVideo);
     return () => {
-      document.removeEventListener('click', playVideo);
+      document.removeEventListener("click", playVideo);
     };
   }, []);
 
@@ -104,11 +119,10 @@ export function Compiler() {
       }
     }, 100);
   };
-
   const handleRunCode = async () => {
     setTestCount(0);
     setButtonText("Running Test Cases: 0/20");
-    
+
     // Fetch the code output first
     const response = await fetch("/api/run-code", {
       method: "POST",
@@ -117,14 +131,19 @@ export function Compiler() {
       },
       body: JSON.stringify({ language: selectedLanguage, code }),
     });
-  
+
     const data = await response.json();
     setOutput(data.output);
-  
-    // Start the test cases simulation
-    simulateTestCases();
+    onStatusChange(data.isExecutionSuccess);
+    if (data.isExecutionSuccess) {
+      // Start the test cases simulation
+      simulateTestCases();
+    }
   };
-  
+
+  const handleSubmit = () => {
+    onNextQuestion(); // Proceed to the next question or redirect to thank you page
+  };
 
   const handleVideoEnd = () => {
     setShowVideo(false);
@@ -133,28 +152,30 @@ export function Compiler() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] h-screen w-full relative">
       {showVideo && (
-        <div style={{
-          position: 'absolute',
-          bottom: '1rem',
-          left: '1rem',
-          width: '10rem', // Increased size
-          height: '10rem', // Increased size
-          borderRadius: '50%',
-          overflow: 'hidden',
-          border: '4px solid white',
-          zIndex: 10,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+        <div
+          style={{
+            position: "absolute",
+            bottom: "1rem",
+            left: "1rem",
+            width: "10rem", // Increased size
+            height: "10rem", // Increased size
+            borderRadius: "50%",
+            overflow: "hidden",
+            border: "4px solid white",
+            zIndex: 10,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <video
             ref={videoRef}
             src="/images/code.mp4"
             onEnded={handleVideoEnd}
             style={{
-              width: '100% !important',
-              height: '100% !important',
-              objectFit: 'cover',
+              width: "100% !important",
+              height: "100% !important",
+              objectFit: "cover",
             }}
             playsInline
           />
@@ -166,26 +187,23 @@ export function Compiler() {
           <div className="space-y-2">
             <h2 className="text-xl font-semibold">Problem Statement</h2>
             <p className="text-muted-foreground">
-              Given an array of integers, find the two numbers such that they add up to a specific target.
+              {question.question.question}
             </p>
           </div>
           <div className="space-y-2">
             <h2 className="text-xl font-semibold">Examples</h2>
             <div className="bg-muted rounded-md p-4 space-y-4">
+              {/* Render examples here */}
               <div>
-                <p className="text-muted-foreground">Input: nums = [2, 7, 11, 15], target = 9</p>
-                <p className="text-muted-foreground">Output: [0, 1]</p>
-                <p className="text-muted-foreground">Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].</p>
-              </div>
-              <div>
-                <p className="text-muted-foreground">Input: nums = [3, 2, 4], target = 6</p>
-                <p className="text-muted-foreground">Output: [1, 2]</p>
-                <p className="text-muted-foreground">Explanation: Because nums[1] + nums[2] == 6, we return [1, 2].</p>
-              </div>
-              <div>
-                <p className="text-muted-foreground">Input: nums = [3, 3], target = 6</p>
-                <p className="text-muted-foreground">Output: [0, 1]</p>
-                <p className="text-muted-foreground">Explanation: Because nums[0] + nums[1] == 6, we return [0, 1].</p>
+                <p className="text-muted-foreground">
+                  Input: {question.question.example.testCase.query}
+                </p>
+                <p className="text-muted-foreground">
+                  Output: {question.question.example.testCase.correctAnswer}
+                </p>
+                <p className="text-muted-foreground">
+                  Explanation: {question.question.example.explanation}
+                </p>
               </div>
             </div>
           </div>
@@ -193,7 +211,11 @@ export function Compiler() {
       </div>
       <div className="bg-background p-8 flex flex-col">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold">Code Editor</h2>
+          <div className="flex flex-row justify-center items-center mt-4 gap-5">
+            <h2 className="text-xl font-semibold">Code Editor</h2>
+            <Button onClick={handleSubmit}>Next Question</Button>
+          </div>
+
           <Select value={selectedLanguage} onValueChange={handleLanguageChange}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select Language" />

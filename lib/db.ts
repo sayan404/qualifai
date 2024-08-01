@@ -4,7 +4,7 @@ const MONGODB_URL = process.env.MONGODB_URL!;
 
 export const connect = async () => {
   try {
-    console.log("MONGODB_URL", MONGODB_URL);
+    // console.log("MONGODB_URL", MONGODB_URL);
     const conn = await mongoose.connect(MONGODB_URL, {
       dbName: "User",
       bufferCommands: false,

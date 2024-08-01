@@ -5,22 +5,25 @@ import Interview from "@/components/interview/page";
 import { useSession } from "@clerk/nextjs";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
-
+import { useRouter } from "next/navigation";
 export default function Home() {
   const { isLoaded, isSignedIn } = useSession();
   const searchParams = useSearchParams();
   const companyName = searchParams?.get("company");
-
+  const router = useRouter()
   // State to store questions data
   const [questions, setQuestions] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const lastCompanyName = useRef<string | null>(null); // To track the last requested company name
 
+  useEffect(()=>{
+    if(!isSignedIn) router.push("/")
+  },[])
   useEffect(() => {
     // Define a flag to track the component's mounted state
     let isMounted = true;
-
+     
     const getQuestions = async () => {
       if (companyName && companyName !== lastCompanyName.current) {
         try {
@@ -44,6 +47,7 @@ export default function Home() {
     };
 
     if (companyName) {
+
       getQuestions();
     }
 
@@ -85,7 +89,7 @@ export default function Home() {
 
   return (
     <div>
-      <Interview questions={questions} />
+      <Interview questions={questions} companyName={companyName} />
     </div>
   );
 }

@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
   console.log("text", text);
 
   const deepgramApiKey = process.env.NEXT_PUBLIC_DEEPGRAM_API_KEY;
-  console.log("deepgramApiKey", deepgramApiKey);
+  // console.log("deepgramApiKey", deepgramApiKey);
 
   // Check if the API key is present
   if (!deepgramApiKey) {

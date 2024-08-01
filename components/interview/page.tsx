@@ -3,12 +3,14 @@ import Question from "../component/Question";
 import MediaPlayer from "../component/MediaPlayer";
 import "../../app/globals.css";
 
-const Interview = ({ questions }: { questions?: any }) => {
+const Interview = ({ questions , companyName }: { questions?: any , companyName : any}) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(true);
   const [audio, setAudio] = useState("");
   const currentQuestion =
     questions.selectedqs.verbal[currentQuestionIndex] || null;
+  const isLastQuestion =
+    currentQuestionIndex === questions?.selectedqs?.verbal.length - 1;
 
   const getAudioFromText = async (currentQuestion: any) => {
     const { question } = currentQuestion;
@@ -39,7 +41,7 @@ const Interview = ({ questions }: { questions?: any }) => {
     if (currentQuestion) {
       setTimeout(() => {
         getAudioFromText(currentQuestion);
-      }, 500); 
+      }, 500);
     }
   }, [audioPlaying]);
 
@@ -71,6 +73,8 @@ const Interview = ({ questions }: { questions?: any }) => {
           <Question
             question={currentQuestion}
             onNextQuestion={handleNextQuestion}
+            isLastQuestion={isLastQuestion}
+            companyName={companyName}
           />
         )
       )}

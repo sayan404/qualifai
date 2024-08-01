@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.621.0",
+    "@aws-sdk/lib-storage": "^3.621.0",
     "@clerk/nextjs": "^5.2.8",
     "@deepgram/sdk": "^3.5.0",
     "@monaco-editor/react": "^4.6.0",

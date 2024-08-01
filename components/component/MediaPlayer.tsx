@@ -17,9 +17,9 @@ const MediaPlayer: React.FC<MediaPlayerProps> = ({ audioSrc, onAudioEnd }) => {
       videoElement.muted = true;
       videoElement.loop = true;
 
-      videoElement.play();
       audioElement.src = audioSrc;
       audioElement.play();
+      videoElement.play();
 
       audioElement.onended = () => {
         if (videoElement) {
