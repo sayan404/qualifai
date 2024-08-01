@@ -38,17 +38,14 @@ QualifAi provides a unique interview preparation experience where users can sele
 
 ## Tech Stack
 
-**Frontend:**
+**Frontend && Backend:**
 - **Next.js:** Provides a fast and responsive user interface.
-
-**Backend:**
-- **Python:** Handles server-side logic and overall platform functionality.
 
 **Voice Interaction:**
 - **Deepgram Voice API:** Processes and analyzes voice interactions during mock interviews.
 
 **Language Models:**
-- **OpenAI/Gemini/Anthropic/Groq:** Implements large language models for comparing answers, generating questions, and natural language processing.
+- **OpenAI** Implements large language models for comparing answers, generating questions, and natural language processing.
 
 **Data Scraping:**
 - **Scraping Solutions:** Collects questions and interview experiences to build a comprehensive database.
@@ -63,7 +60,7 @@ QualifAi provides a unique interview preparation experience where users can sele
 - **MongoDB:** Stores user information and interview questions.
 
 **User Management:**
-- **Appwrite:** Handles user authentication, sign-in, and management functionalities.
+- **Clerk:** Handles user authentication, sign-in, and management functionalities.
 
 ## Getting Started
 
