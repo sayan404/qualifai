@@ -6,9 +6,13 @@ export async function POST(req: NextRequest) {
   const deepgram = createClient(deepgramApiKey);
   const formData = await req.formData();
   const audioFile = formData.get("audio") as Blob;
-  const audioUrl = URL.createObjectURL(audioFile);
-  console.log("audioUrl", audioUrl);
+  // const audioUrl = URL.createObjectURL(audioFile);
+  const arrayBuffer = await audioFile.arrayBuffer();
+  const audioUrl = URL.createObjectURL(
+    new Blob([arrayBuffer], { type: "audio/mp3" })
+  );
 
+  console.log("audioUrl", audioUrl);
   try {
     const result = await deepgram.listen.prerecorded.transcribeUrl(
       {
@@ -19,7 +23,9 @@ export async function POST(req: NextRequest) {
     console.log("result s2t", result);
 
     const captions = webvtt(result);
-    return NextResponse.json({ result }, { status: 200 });
+    console.log("captions", captions);
+
+    return NextResponse.json({ captions }, { status: 200 });
   } catch (error: any) {
     console.error("Error in streamToText API route:", error);
     return NextResponse.json(
