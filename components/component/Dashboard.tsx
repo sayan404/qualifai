@@ -321,7 +321,7 @@ export function Dashboard() {
           </header> */}
           <div className="flex overflow-hidden">
             <div className="hidden md:flex flex-col gap-2 text-foreground bg-background w-[260px] shrink-0">
-              <div className="sticky top-0 p-2">
+              {/* <div className="sticky top-0 p-2">
                 <Link
                   href="#"
                   className="flex items-center justify-center"
@@ -330,9 +330,9 @@ export function Dashboard() {
                   <BarChartIcon className="h-6 w-6" />
                   <span className="sr-only">Interview Dashboard</span>
                 </Link>
-              </div>
+              </div> */}
               <div className="flex-1 overflow-auto">
-                <nav className="grid items-start px-4 text-sm font-medium">
+                <nav className="grid items-start px-4 text-sm font-medium border-2 rounded-xl p-5 ml-3">
                   <Link
                     href="#"
                     data-section="My Space"
@@ -427,7 +427,7 @@ export function Dashboard() {
                 </nav>
               </div>
             </div>
-            <main className=" flex justify-center items-center gap-4 p-4 md:gap-8 md:p-10 w-full h-full overflow-auto font-bold">
+            <main className=" gap-4 p-4 md:gap-8 md:p-10 w-full h-full overflow-auto">
               {activeSection === "Company-based" && (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {companies &&
