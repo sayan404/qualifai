@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import companies from "@/assets/data/companyForInterviewList";
 import { Input } from "@/components/ui/input";
 import {
   Card,
@@ -23,6 +24,7 @@ import { ResponsivePie } from "@nivo/pie";
 import { useRouter } from "next/navigation";
 import Interview from "../interview/page";
 import { Chooser } from "./Chooser";
+import CompanyBasedinterview from "./CompanyBasedinterview";
 
 export function Dashboard() {
   const [activeSection, setActiveSection] = useState("My Space");
@@ -41,6 +43,7 @@ export function Dashboard() {
   function handleNavClick(section: string) {
     setActiveSection(section);
   }
+  console.log("companies", companies);
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-background">
@@ -989,108 +992,13 @@ export function Dashboard() {
                   </Card>
                 </div>
               )}
+
+              {/* add company based interview */}
               {activeSection === "Company-based" && (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  <Card className="h-full">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                      <CardTitle className="text-sm font-medium">
-                        Google
-                      </CardTitle>
-                      <Button variant="outline" size="sm">
-                        Start Interview
-                      </Button>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold">8</div>
-                      <p className="text-xs text-muted-foreground">
-                        Interviews completed
-                      </p>
-                    </CardContent>
-                  </Card>
-                  <Card className="h-full">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                      <CardTitle className="text-sm font-medium">
-                        Amazon
-                      </CardTitle>
-                      <Button variant="outline" size="sm">
-                        Start Interview
-                      </Button>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold">6</div>
-                      <p className="text-xs text-muted-foreground">
-                        Interviews completed
-                      </p>
-                    </CardContent>
-                  </Card>
-                  <Card className="h-full">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                      <CardTitle className="text-sm font-medium">
-                        Microsoft
-                      </CardTitle>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setShowInterview(true)}
-                      >
-                        Start Interview
-                      </Button>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold">5</div>
-                      <p className="text-xs text-muted-foreground">
-                        Interviews completed
-                      </p>
-                    </CardContent>
-                  </Card>
-                  <Card className="h-full">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                      <CardTitle className="text-sm font-medium">
-                        Apple
-                      </CardTitle>
-                      <Button variant="outline" size="sm">
-                        Start Interview
-                      </Button>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold">4</div>
-                      <p className="text-xs text-muted-foreground">
-                        Interviews completed
-                      </p>
-                    </CardContent>
-                  </Card>
-                  <Card className="h-full">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                      <CardTitle className="text-sm font-medium">
-                        Facebook
-                      </CardTitle>
-                      <Button variant="outline" size="sm">
-                        Start Interview
-                      </Button>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold">3</div>
-                      <p className="text-xs text-muted-foreground">
-                        Interviews completed
-                      </p>
-                    </CardContent>
-                  </Card>
-                  <Card className="h-full">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                      <CardTitle className="text-sm font-medium">
-                        Uber
-                      </CardTitle>
-                      <Button variant="outline" size="sm">
-                        Start Interview
-                      </Button>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold">2</div>
-                      <p className="text-xs text-muted-foreground">
-                        Interviews completed
-                      </p>
-                    </CardContent>
-                  </Card>
+                  {companies && companies.map((e, idx) => (
+                    <CompanyBasedinterview companyData={e} />
+                  ))}
                 </div>
               )}
               {activeSection === "DSA Rounds" && (

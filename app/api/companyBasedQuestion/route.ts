@@ -23,18 +23,18 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
-    console.log("url", url);
+    // console.log("url", url);
 
     const query = Object.fromEntries(url.searchParams.entries());
     console.log("query", query);
 
     const filteredQuesions = await getCompanyBasedQuestion(query);
-    console.log("filteredQuesions", filteredQuesions);
+    // console.log("filteredQuesions", filteredQuesions);
 
     return NextResponse.json(
       {
         message: "filtered Data",
-        newQuestion: filteredQuesions,
+        questions: filteredQuesions,
       },
       { status: 200 }
     );

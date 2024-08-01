@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
-import { getVerbalQuestion , createVerbalQuestion } from "@/lib/actions/verbalQuestions.action";
+import {
+  getVerbalQuestion,
+  createVerbalQuestion,
+} from "@/lib/actions/verbalQuestions.action";
 // POST request handler to create a new verbal-based question
 export async function POST(req: Request) {
   try {
@@ -26,14 +29,8 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
-    console.log("url", url);
-
     const query = Object.fromEntries(url.searchParams.entries());
-    console.log("query", query);
-
     const filteredQuestions = await getVerbalQuestion(query);
-    console.log("filteredQuestions", filteredQuestions);
-
     return NextResponse.json(
       {
         message: "Filtered verbal-based questions",
