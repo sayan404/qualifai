@@ -747,7 +747,6 @@ export function Dashboard() {
               )}
               {activeSection === "Role-based" && (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  Comming soon
                   <Card className="h-full">
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                       <CardTitle className="text-sm font-medium">
