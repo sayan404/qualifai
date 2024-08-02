@@ -34,7 +34,7 @@ QualifAi provides a unique interview preparation experience where users can sele
 
 ## Architecture
 
-![Architecture Diagram](https://firebasestorage.googleapis.com/v0/b/uploadika-b352f.appspot.com/o/images%2FWhatsApp%20Image%202024-08-02%20at%2004.56.42_9051c666.jpg?alt=media&token=8c7782b5-d576-49c7-84ff-6fbc1ab10391)
+![Architecture Diagram](https://firebasestorage.googleapis.com/v0/b/uploadika.appspot.com/o/sayan-majumder%2FWhatsApp%20Image%202024-08-02%20at%2017.50.22_5be5c2dc.jpg?alt=media&token=3a658abf-dacd-4a8a-953e-b7363cf02831)
 
 ## Tech Stack
 
