@@ -18,13 +18,13 @@ const InterviewEndPage = () => {
     }
   };
   useEffect(() => {
-    // const timer = setTimeout(() => {
-    //   router.push("/dashboard");
-    // }, 4000);
+    const timer = setTimeout(() => {
+      router.push("/dashboard");
+    }, 4000);
 
-    // // Cleanup the timer if the component unmounts
-    // return () => clearTimeout(timer);
-    getReport();
+    // Cleanup the timer if the component unmounts
+    return () => clearTimeout(timer);
+    // getReport();
   }, []);
 
   return (
