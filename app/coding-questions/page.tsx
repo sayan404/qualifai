@@ -109,7 +109,7 @@ const CodingQuestionPage = () => {
           question: questionData,
         });
         console.log("response data from coding-ques", response);
-        // localStorage.removeItem("sessionId");
+         localStorage.removeItem("sessionId");
       } catch (err) {
         console.log(err);
       }
